@@ -1,0 +1,32 @@
+# feeder
+feeder: feeders.feeder.Feeder
+test_feeder_args:
+  data_path: /media/22905553/F020DDF820DDC5AE/Action_Dataset/Fall_detection_data/uwa3d/val4/val4_joint.npy
+  label_path: /media/22905553/F020DDF820DDC5AE/Action_Dataset/Fall_detection_data/uwa3d/val4/val4_label.pkl
+  normalization: True
+  debug: False
+  random_choose: True
+  window_size: 250
+
+# model
+model: model.model.Model
+model_args:
+  num_class: 2
+  num_point: 25
+  num_person: 2
+  max_frame: 250
+  graph_args:
+    layout: 'ntu-rgb+d'
+    strategy: 'spatial'
+    max_hop: 4
+
+# test
+phase: test
+device: [0]
+test_batch_size: 64
+#weights: /home/uniwa/students3/students/22905553/linux/phd_codes/My_part_based_convolution/uwa3d_test_v8/weights/weights-32-224.pt
+weights: /home/uniwa/students3/students/22905553/linux/phd_codes/Fall_detection/ntu_xsub/weights/weights-39-12207.pt
+#weights: /home/uniwa/students3/students/22905553/linux/phd_codes/Fall_detection/uwa3d_val4_v2/weights/weights-10-110.pt
+
+work_dir: ./eval/ntu/xsub/joint/
+save_score: True
