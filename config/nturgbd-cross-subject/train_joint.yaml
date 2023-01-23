@@ -1,0 +1,56 @@
+
+work_dir: ./work_dir/ntu/xsub/msg3d_joint
+
+# feeder
+feeder: feeders.feeder.Feeder
+train_feeder_args:
+  data_path: /media/22905553/F020DDF820DDC5AE/Action_Dataset/Fall_detection_data/imbalanced/ntu/xsub/train_joint.npy
+  label_path: /media/22905553/F020DDF820DDC5AE/Action_Dataset/Fall_detection_data/imbalanced/ntu/xsub/train_label.pkl
+  debug: False
+  random_choose: False
+  random_shift: False
+  random_move: False
+  normalization: True
+  random_choose: True
+  window_size: 250
+
+test_feeder_args:
+  data_path: /media/22905553/F020DDF820DDC5AE/Action_Dataset/Fall_detection_data/imbalanced/ntu/xsub/val_joint.npy
+  label_path: /media/22905553/F020DDF820DDC5AE/Action_Dataset/Fall_detection_data/imbalanced/ntu/xsub/val_label.pkl
+  normalization: True
+  debug: False
+  random_choose: True
+  window_size: 250
+  
+# model
+model: model.model.Model
+model_args:
+  num_class: 2
+  num_point: 25
+  num_person: 2
+  max_frame: 250
+  graph_args:
+    layout: 'ntu-rgb+d'
+    strategy: 'spatial'
+    max_hop: 4
+# optim
+weight_decay: 0.0005
+base_lr: 0.05
+step: [10, 20, 30, 40]
+
+# training
+num_epoch: 50
+device: [0]
+batch_size: 128
+forward_batch_size: 64
+test_batch_size: 128
+nesterov: True
+
+#weights: /home/uniwa/students3/students/22905553/linux/phd_codes/My_part_based_convolution/ntu_test_v12/weights/weights-36-22536.pt
+
+#weights: /home/uniwa/students3/students/22905553/linux/phd_codes/My_part_based_convolution/ntu_test_v9/weights/weights-1-626.pt
+
+#checkpoint: /home/uniwa/students3/students/22905553/linux/phd_codes/My_part_based_convolution/ntu_test_v9/checkpoints/checkpoint-1-fwbz32-626.pt
+
+
+
